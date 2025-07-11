@@ -1,7 +1,6 @@
 import sqlite3
 from movietuple import TupledMovie
 from PyQt5.QtChart import QChart, QChartView, QPieSeries
-from PyQt5 import uic
 class Database:
     def __init__(self, db_name="movie.sqlite3"):
         self.conn = sqlite3.connect(db_name)
@@ -53,10 +52,6 @@ class Database:
         self.series = QPieSeries()
         self.series.append(f"{self.audition_lineEdit_1}", first)
         self.series.append(f"{self.audition_lineEdit_2}", second)
-
-
         self.pie_chart.addSeries(self.series)
-
-        # Set the chart to the view
         self.chart_view.setChart(self.pie_chart)
 
