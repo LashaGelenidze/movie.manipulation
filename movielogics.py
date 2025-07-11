@@ -39,19 +39,4 @@ class Database:
     def delete_movies(self, rating):
         self.cursor.execute("DELETE FROM movies WHERE rating=?", (rating, ))
         self.conn.commit()
-    @ staticmethod
-    def count_rated_movie(cursor,for_audience):
-        return cursor.execute("SELECT count(*) FROM movies WHERE movie_rated=?", (for_audience,)).fetchone()[0]
-
-    def add_pie_chart(self):
-        self.pie_chart=QChart()
-        self.pie_chart.setTitle("აუდიენციის მიხედვით შეფასება")
-        first=Database.count_rated_movie(self.cursor, self.audition_lineEdit_1)
-        second = Database.count_rated_movie(self.cursor, self.audition_lineEdit_2)
-
-        self.series = QPieSeries()
-        self.series.append(f"{self.audition_lineEdit_1}", first)
-        self.series.append(f"{self.audition_lineEdit_2}", second)
-        self.pie_chart.addSeries(self.series)
-        self.chart_view.setChart(self.pie_chart)
 
