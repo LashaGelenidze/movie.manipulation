@@ -27,8 +27,7 @@ class Execute(Ui_MainWindow):
         self.upload_films()
 
     def update_film(self):
-        film = TupledMovie(float(self.rating_lineEdit),self.name_lineEdit)
-        self.database.update_movies(film)
+        self.database.update_movies(float(self.rating_lineEdit),self.name_lineEdit)
         self.upload_films()
 
     def delete_film(self):
