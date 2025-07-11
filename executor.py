@@ -4,7 +4,7 @@ from movietuple import TupledMovie
 
 from movies import Ui_MainWindow
 
-class Execute(Ui_MainWindow):
+class Execute(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self,database):
         super().__init__()
         self.database=database
@@ -32,7 +32,7 @@ class Execute(Ui_MainWindow):
 
     def delete_film(self):
         self.database.delete_movies(float(self.rating_lineEdit))
-        self.load_books()
+        self.upload_films()
         
     @ staticmethod
     def count_rated_movie(cursor,for_audience):
