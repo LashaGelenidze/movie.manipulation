@@ -23,16 +23,16 @@ class Execute(Ui_MainWindow):
     def add_film(self):
         film = TupledMovie(None,self.name_lineEdit, int(self.year_lineEdit),
                            self.audience_lineEdit, float(self.rating_lineEdit), int(self.raters_lineEdit), int(self.reviews_lineEdit))
-        self.db.insert_movies(film)
+        self.database.insert_movies(film)
         self.upload_films()
 
     def update_film(self):
         film = TupledMovie(float(self.rating_lineEdit),self.name_lineEdit)
-        self.db.update_movies(film)
+        self.database.update_movies(film)
         self.upload_films()
 
     def delete_film(self):
-        self.db.delete_movies(float(self.rating_lineEdit))
+        self.database.delete_movies(float(self.rating_lineEdit))
         self.load_books()
         
     @ staticmethod
