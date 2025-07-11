@@ -11,6 +11,7 @@ class Execute(Ui_MainWindow):
         self.insert_button.clicked.connect(self.add_film())
         self.update_button.clicked.connect(self.update_film())
         self.delete_button.clicked.connect(self.delete_film())
+        self.compare_button.clicked.connect(self.add_pie_chart())
         self.upload_films
 
     def upload_films(self):
@@ -33,5 +34,21 @@ class Execute(Ui_MainWindow):
     def delete_film(self):
         self.db.delete_movies(float(self.rating_lineEdit))
         self.load_books()
+        
+    @ staticmethod
+    def count_rated_movie(cursor,for_audience):
+        return cursor.execute("SELECT count(*) FROM movies WHERE movie_rated=?", (for_audience,)).fetchone()[0]
+
+    def add_pie_chart(self):
+        self.pie_chart=QChart()
+        self.pie_chart.setTitle("აუდიენციის მიხედვით შეფასება")
+        first=Database.count_rated_movie(self.cursor, self.audition_lineEdit_1)
+        second = Database.count_rated_movie(self.cursor, self.audition_lineEdit_2)
+
+        self.series = QPieSeries()
+        self.series.append(f"{self.audition_lineEdit_1}", first)
+        self.series.append(f"{self.audition_lineEdit_2}", second)
+        self.pie_chart.addSeries(self.series)
+        self.chart_view.setChart(self.pie_chart)
 
 
