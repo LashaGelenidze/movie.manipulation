@@ -13,8 +13,7 @@ class Execute(QtWidgets.QMainWindow):
 
         self.database = database
         self.upload_films()
-
-        # Connect buttons to methods (ბარემ დააკვირდი, არ უნდა ჰქონდეს ())
+        
         self.ui.insert_button.clicked.connect(self.add_film)
         self.ui.update_button.clicked.connect(self.update_film)
         self.ui.delete_button.clicked.connect(self.delete_film)
