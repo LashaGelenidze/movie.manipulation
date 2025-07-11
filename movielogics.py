@@ -1,6 +1,5 @@
 import sqlite3
 from movietuple import TupledMovie
-from PyQt5.QtChart import QChart, QChartView, QPieSeries
 class Database:
     def __init__(self, db_name="movie.sqlite3"):
         self.conn = sqlite3.connect(db_name)
@@ -12,11 +11,11 @@ class Database:
             CREATE TABLE IF NOT EXISTS movies (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
-                year REAL NOT NULL,
+                year INTEGER NOT NULL,
                 movie_rated TEXT NOT NULL,
                 rating REAL NOT NULL,
-                num_raters REAL NOT NULL,
-                num_reviews REAL NOT NULL
+                num_raters INTEGER NOT NULL,
+                num_reviews INTEGER NOT NULL
             )
         """)
         self.conn.commit()
